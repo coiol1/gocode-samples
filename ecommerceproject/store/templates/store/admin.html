@@ -1,0 +1,18 @@
+{% extends 'ecommerceproject/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
+
+{% block content %}
+<h2>Orders</h2>
+{% for order in orders %}
+    <h3>Order #{{order.id}}: {{order.get_status}} ({{order.username}})</h3>
+{% endfor %}
+<h2>Products</h2>
+{% for product in products %}
+    <h3>Product #{{product.id}} ({{product.name}}): ${{product.dollars}}</h3>
+{% endfor %}
+<h2>OrderProducts</h2>
+{% for orderproduct in orderproducts %}
+    <h3>OrderProduct #{{orderproduct.id}}: Order #{{orderproduct.order_id}}, Product #{{orderproduct.product_id}}, {{orderproduct.quantity}} items</h3>
+{% endfor %}
+{% endblock %}

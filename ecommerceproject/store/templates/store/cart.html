@@ -1,0 +1,27 @@
+{% extends 'ecommerceproject/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
+
+{% block content %}
+<h1 class='page-title'>Shopping Cart</h1>
+<ul>
+{% for item in cart_contents %}
+    <li>{{item.product.name}}, {{item.quantity}} items</li>
+    <form action="/store/cart/" method="POST" class='cart-button'>
+        {% csrf_token %}
+        <input type='hidden' name='update_id' value={{item.id}}>
+        <input type='number' name='update_quantity' value='{{item.quantity}}' min='1'>
+        <input type='submit' name='button' value='Update quantity'>
+    </form>
+    <form action="/store/cart/" method="POST" class='cart-button'>
+        {% csrf_token %}
+        <input type='hidden' name='remove' value={{item.id}}>
+        <input type='submit' name='button' value='Remove from cart'>
+    </form>
+{% endfor %}
+</ul>
+<h3>Subtotal: ${{subtotal}}
+<a href='/store/checkout/'>Checkout</a>
+<br>
+<a href='/store/'>Return to store</a></h3>
+{% endblock %}

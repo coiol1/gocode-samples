@@ -1,0 +1,10 @@
+{% extends 'ecommerceproject/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
+
+{% block content %}
+<h1 class='page-title'>Login success!</h1>
+<h3>{{user.username}} signed in.
+<br>
+<a href='/store/'>Store</a></h3>
+{% endblock %}

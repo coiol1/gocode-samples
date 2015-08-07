@@ -1,0 +1,23 @@
+{% extends 'ecommerceproject/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
+
+{% block content %}
+<h1 class='page-title'>New user signup</h1>
+<form action="/users/signup/success/" method="POST">
+    {% csrf_token %}
+    <h3>
+        First name
+        <input type='text' name='firstname' required><br>
+        Last name
+        <input type='text' name='lastname' required><br>
+        Email address
+        <input type='email' name='email' required><br>
+        Username
+        <input type='text' name='username' required><br>
+        Password
+        <input type='password' name='password' required><br>
+        <input type='submit' name='button' value='Create new user'>
+    </h3>
+</form>
+{% endblock %}

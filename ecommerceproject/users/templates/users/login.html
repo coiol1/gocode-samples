@@ -1,0 +1,21 @@
+{% extends 'ecommerceproject/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
+
+{% block content %}
+<h1 class='page-title'>User login</h1>
+<br>
+{% if try_again %}
+    <h2>Unable to log in. Try again or <a href='/users/signup'>register a new user</a>.</h2>
+{% endif %}
+<form action="/users/login/" method="POST">
+    {% csrf_token %}
+    <h3>
+        Username
+        <input type='text' name='username' required><br>
+        Password
+        <input type='password' name='password' required><br>
+        <input type='submit' name='button' value='Log in'>
+    </h3>
+</form>
+{% endblock %}

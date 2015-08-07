@@ -1,0 +1,46 @@
+{% extends 'ecommerceproject/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
+
+{% block content %}
+<h1 class='page-title'>Store</h1>
+
+<a href='/store/cart/'>View cart</a>
+<br>
+<span>
+    Filter by price:
+    <a href='?filter=low'>Items under $100</a>
+    <a href='?filter=medium'>Items from $100 to $10,000</a>
+    <a href='?filter=high' id='baller'><strong>BALLER STATUS</strong></a>
+</span>
+<br>
+<span>
+    View all items:
+    <a href='?sortby=price_asc'>Sort by price (low-high)</a>
+    <a href='?sortby=price_desc'>Sort by price (high-low)</a>
+    <a href='?sortby=alpha'>Sort alphabetically</a>
+</span>
+<div>
+    ({{num_items}} items)
+    {% if products.has_previous %}
+        <a href="?page={{products.previous_page_number}}{{qparams}}">previous</a>
+    {% endif %}
+    Page {{products.number}} of {{products.paginator.num_pages}}
+    {% if products.has_next %}
+        <a href="?page={{products.next_page_number}}{{qparams}}">next</a>
+    {% endif %}
+    <form method="GET" class="search-box">
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
+</div>
+
+{% for product in products %}
+    <a href='/store/{{product.id}}'>
+        <div class='product-box'>
+            <img src='{% static product.image %}' class='product-picture'>
+            <span class='product-info'>{{product.name}}: ${{product.dollars}}</span>
+        </div>
+    </a>
+{% endfor %}
+{% endblock %}

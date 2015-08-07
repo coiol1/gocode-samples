@@ -1,0 +1,27 @@
+{% extends 'ecommerceproject/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
+
+{% block content %}
+{% if product.id = 11 %}
+    <body style="background-image: url('{% static "bigpimpin.jpg" %}')">
+    <audio loop='loop' autoplay='autoplay' src='{% static 'bigpimpin.mp3' %}'></audio>
+{% endif %}
+
+<h1 class='page-title'>{{product.name}}</h1>
+<img src='{% static product.image %}' class='closeup'><br>
+<h3 class='closeup-writing'>{% autoescape off %}{{product.description}}{% endautoescape %}</h3><br>
+<h2 class='closeup-writing'>${{product.dollars}}</h2><br>
+<form action="/store/cart/" method="POST" class='cart-button'>
+    {% csrf_token %}
+    <input type='hidden' name='add_product' value={{product.id}}>
+    <input type='number' name='add_quantity' value='1' min='1'>
+    <input type='submit' name='button' value='Add to cart'>
+</form>
+<br>
+<a href='/store/'>Return to store</a>
+{% endblock %}
+
+{% if product.id = 11 %}
+    </body>
+{% endif %}

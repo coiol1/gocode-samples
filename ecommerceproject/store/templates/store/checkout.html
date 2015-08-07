@@ -1,0 +1,10 @@
+{% extends 'ecommerceproject/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
+
+{% block content %}
+<h1 class='page-title'>Checkout page</h1>
+<h1>Checked out! Thanks for your business.</h1>
+<br>
+<h3><a href='/store/'>Return to store</a></h3>
+{% endblock %}

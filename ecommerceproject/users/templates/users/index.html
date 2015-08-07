@@ -1,0 +1,16 @@
+{% extends 'ecommerceproject/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
+
+{% block content %}
+<h1 class='page-title'>Users</h1>
+<br>
+{% if no_user %}
+<h2>You must login to view this page.</h2>
+{% endif %}
+<h3>
+    <a href='/users/login/'>Log in</a><br>
+    <a href='/users/logout/'>Log out</a><br>
+    <a href='/users/signup/'>Register a new user</a><br>
+</h3>
+{% endblock %}
